@@ -36,7 +36,7 @@ def checkin(session,id,username,cookiejar,dataAddress):
     country = dataAddress['country']
     data={
         'RsNum':'3',
-        'Id':'11108',
+        'Id':id,
         'Tx':'33_1',
         'canTj':'1',
         'isNeedAns':'0',
