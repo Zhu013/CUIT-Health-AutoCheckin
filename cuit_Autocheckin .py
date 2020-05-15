@@ -76,7 +76,7 @@ def checkin(session,id,username,cookiejar,dataAddress):
         'zw2':'',
         'B2':'%CC%E1%BD%BB%B4%F2%BF%A8'
     }
-    cookiejar.set('refreshCT','UserName=Xs%5F2017122088')
+    cookiejar.set('refreshCT','UserName=Xs%5F'+str(username))
     #print(cookiejar)
     req = session.post(url=url,headers = header,cookies = cookiejar,data=data)
     html = req.content.decode('gb2312')
