@@ -4,11 +4,6 @@ import time
 import threading
 
 
-curTime=time.strftime("%Y-%M-%D",time.localtime())
-execF=False
-ncount=0
-
-
 
 def checkin(session,id,username,cookiejar,dataAddress):
 
@@ -82,7 +77,7 @@ def checkin(session,id,username,cookiejar,dataAddress):
     html = req.content.decode('gb2312')
     state = re.search('alert(.*?);',html).group(1)
     print(state)
-    #print(re.content.decode('gb2312'))
+    #print(req.content.decode('gb2312'))
     #print(cookiejar)
     #print(re.cookies)
 
@@ -194,31 +189,18 @@ def getSession(username,password):
     req8 = session.get(url='http://jszx-jxpt.cuit.edu.cn/Jxgl/Xs/MainMenu.asp',cookies = cookiejar1,allow_redirects=False)
     req9 = session.get(url='http://jszx-jxpt.cuit.edu.cn/Jxgl/Xs/netks/sj.asp',cookies = cookiejar1,allow_redirects=False)
 
+    #print(req9.content.decode('gb2312'))
     return session,cookiejar2
 
-
-def timeTask():
-    global execF
-    global curTime
-    global ncount
-    
-    if execF is False:
-        main()
-        execF=True
-    else:
-        desTime = time.strftime("%Y-%M-%D",time.localtime())
-        if desTime >curTime:
-            execF=False
-            curTime=desTime
-    ncount = ncount+1
-    timer = threading.Timer(21600,timeTask)
+def fun_timer():
+    main()
+    global timer
+    timer = threading.Timer(21600,fun_timer)
     timer.start()
-    print("定时器执行%d次"%(ncount))
-
 
 def main():
     username = 
-    password = ''
+    password = 'xxxxx'
     data={
         'province':'四川',
         'city':'成都',
@@ -231,15 +213,14 @@ def main():
 
 if __name__ == "__main__":
     '''
-    每6个小时自动打卡一次
     请设置main函数里面的以下内容
     username = 
-    password = ''
+    password = 'xxxxxxxx'
     data={
         'province':'四川',
         'city':'成都',
         'country':'XX'
     }
     '''
-    timer = threading.Timer(5,timeTask)
+    timer = threading.Timer(5,fun_timer)
     timer.start()
