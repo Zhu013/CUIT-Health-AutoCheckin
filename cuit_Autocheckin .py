@@ -195,7 +195,7 @@ def getSession(username,password):
 def fun_timer():
     main()
     global timer
-    timer = threading.Timer(21600,fun_timer)
+    timer = threading.Timer(86400,fun_timer)
     timer.start()
 
 def main():
