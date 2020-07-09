@@ -18,4 +18,5 @@ CUIT AutoCheck in<br>
 ###### WINDOWS 新增GUI版本release<br> 
 https://github.com/Zhu013/CUIT-Health-AutoCheckin/releases/tag/1.0
 
-PS：我好像不用再收到来自辅导员的关怀了
+PS：有用欢迎给个star  ~~
+    我好像不用再收到来自辅导员的关怀了
