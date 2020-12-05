@@ -4,7 +4,6 @@ import time
 import threading
 
 
-
 def checkin(session,id,username,cookiejar,dataAddress):
 
     url='http://jszx-jxpt.cuit.edu.cn/Jxgl/Xs/netks/editSjRs.asp'
@@ -29,43 +28,56 @@ def checkin(session,id,username,cookiejar,dataAddress):
     city = dataAddress['city']
     print(dataAddress['country'])
     country = dataAddress['country']
+    print(dataAddress['destination'])
+    destination = dataAddress['destination']
+    print(dataAddress['reason'])
+    reason = dataAddress['reason']
     data={
-        'RsNum':'3',
+        'RsNum':'4',
         'Id':id,
         'Tx':'33_1',
         'canTj':'1',
         'isNeedAns':'0',
         'UTp':'Xs',
         'ObjId':username,
-        'th_1':'21648',
-        'wtOR_1':'N%26sF21648_2%5C%7C%2F%5C%7C%2FN%5C%7C%2F%5C%7C%2FN%5C%7C%2F',
+        'th_1':'21650',
+        'wtOR_1': '1\|/' + province + '\|/' + city + '\|/' + country + '\|/1\|/1\|/1\|/1\|/1\|/',
+        'sF21650_1':'1',
+        'sF21650_2':province.encode('gb2312'),
+        'sF21650_3':city.encode('gb2312'),
+        'sF21650_4':country.encode('gb2312'),
+        'sF21650_5':'1',
+        'sF21650_6':'1',
+        'sF21650_7':'1',
+        'sF21650_8':'1',
+        'sF21650_9':'1',
+        'sF21650_10':'',
+        'sF21650_N': '10',
+        'th_2': '21912',
+        'wtOR_2': destination + '\|/' + reason + '\|/1\|/06\|/3\|/23',
+        'sF21912_1': destination.encode('gb2312'),
+        'sF21912_2': reason.encode('gb2312'),
+        'sF21912_3': '1',
+        'sF21912_4': '06',
+        'sF21912_5': '3',
+        'sF21912_6': '23',
+        'sF21912_N': '6',
+        'th_3':'21648',
+        'wtOR_3':'N\|/\|/N\|/\|/N\|/',
         'sF21648_1':'N',
         'sF21648_2':'',
         'sF21648_3':'N',
         'sF21648_4':'',
         'sF21648_5':'N',
         'sF21648_6':'',
-        'sF21648_N':'6',
-        'th_2':'21649',
-        'wtOR_2':'5%5C%7C%2F%25B8%25DF%25CB%25D9%25C2%25B7%5C%7C%2F2%5C%7C%2F20',
-        'sF21649_1':'5',
+        'sF21648_N': '6',
+        'th_4':'21649',
+        'wtOR_4':'\|/\|/\|/',
+        'sF21649_1':'',
         'sF21649_2':'',
-        'sF21649_3':'2',
-        'sF21649_4':'20',
+        'sF21649_3':'',
+        'sF21649_4':'',
         'sF21649_N':'4',
-        'th_3':'21650',
-        'wtOR_3':'6\|/'+province+'\|'+city+'\|/'+country+'\|/1\|/5\|/1\|/1\|/1\|/',
-        'sF21650_1':'6',
-        'sF21650_2':province.encode('gb2312'),
-        'sF21650_3':city.encode('gb2312'),
-        'sF21650_4':country.encode('gb2312'),
-        'sF21650_5':'1',
-        'sF21650_6':'5',
-        'sF21650_7':'1',
-        'sF21650_8':'1',
-        'sF21650_9':'1',
-        'sF21650_10':'',
-        'sF21650_N':'10',
         'zw1':'',
         'cxStYt':'A',
         'zw2':'',
@@ -199,12 +211,14 @@ def fun_timer():
     timer.start()
 
 def main():
-    username = 
-    password = 'xxxxx'
+    username = 2017000000
+    password = 'XXX0000a'
     data={
         'province':'四川',
         'city':'成都',
-        'country':'XX'
+        'country': '双流区',
+        'destination': '春熙路',
+        'reason': '买衣服',
     }
     session,cookie = getSession(username,password)
     id = getId(session,cookie)
@@ -219,8 +233,12 @@ if __name__ == "__main__":
     data={
         'province':'四川',
         'city':'成都',
-        'country':'XX'
+        'country':'双流区',
+        'destination': '春熙路',
+        'reason': '买衣服',
     }
     '''
     timer = threading.Timer(5,fun_timer)
     timer.start()
+
+
